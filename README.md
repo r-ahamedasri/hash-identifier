@@ -21,6 +21,15 @@ just setup
 
 Requires [`uv`](https://github.com/astral-sh/uv) and [`just`](https://github.com/casey/just). If you don't have them:
 
+**Windows (PowerShell):**
+
+```powershell
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+winget install --id Casey.Just -e
+```
+
+**macOS / Linux:**
+
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to ~/.local/bin
@@ -34,19 +43,18 @@ curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -
 just scan '5f4dcc3b5aa765d61d8327deb882cf99'
 ```
 
-```
 ╭─ scan report ────────────────────────────────────────────────╮
-│ sample  5f4dcc3b5aa765d61d8327deb882cf99                      │
-│                                                                 │
-│  #   algorithm   confidence   reason                          │
-│  1   MD5         Medium       32 hex characters — the most    │
-│                                common algorithm at this length │
-│  2   NTLM        Low          32 hex characters also matches  │
-│                                NTLM's output size              │
-│  3   MD4         Low          32 hex characters also matches  │
-│                                MD4's output size                │
+│ sample 5f4dcc3b5aa765d61d8327deb882cf99 │
+│ │
+│ # algorithm confidence reason │
+│ 1 MD5 Medium 32 hex characters — the most │
+│ common algorithm at this length │
+│ 2 NTLM Low 32 hex characters also matches │
+│ NTLM's output size │
+│ 3 MD4 Low 32 hex characters also matches │
+│ MD4's output size │
 ╰──────────────────────────────────────────────────────────────╯
-```
+
 
 **Interactive mode** — just run `just shell` and paste hashes one after another without re-invoking the CLI each time.
 
@@ -75,13 +83,12 @@ Detection rules live in `src/hash_identifier/rules.py` as small, independently-r
 
 Adding a new hash format means writing one new function decorated with `@rule` in `rules.py` — nothing else in the codebase changes.
 
-```
 src/hash_identifier/
-├── models.py    # Confidence, Finding, ScanReport
-├── rules.py     # the detection rules themselves
-├── engine.py    # scan() — runs all rules, builds the report
-└── cli.py       # argparse + rich UI, one-shot and interactive modes
-```
+├── models.py # Confidence, Finding, ScanReport
+├── rules.py # the detection rules themselves
+├── engine.py # scan() — runs all rules, builds the report
+└── cli.py # argparse + rich UI, one-shot and interactive modes
+
 
 ## Development
 
