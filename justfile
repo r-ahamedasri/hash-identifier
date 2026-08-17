@@ -1,6 +1,9 @@
 # justfile — task runner for hash-identifier
 # run `just` with no args to list all recipes
 
+# On Windows, run recipes through PowerShell instead of the (absent) `sh`.
+set windows-shell := ["powershell.exe", "-NoLogo", "-Command"]
+
 default:
     @just --list
 
@@ -30,6 +33,6 @@ check:
 fix:
     uv run ruff check --fix .
 
-# remove venv and caches
+# remove venv and caches (cross-platform)
 clean:
-    rm -rf .venv .pytest_cache **/__pycache__ dist build *.egg-info
+    uv run python -c "import shutil, pathlib; [shutil.rmtree(p, ignore_errors=True) for p in ['.venv', '.pytest_cache', 'dist', 'build'] + [str(p) for p in pathlib.Path('.').rglob('__pycache__')] + [str(p) for p in pathlib.Path('.').glob('*.egg-info')]]"
