@@ -39,13 +39,13 @@ curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -
 
 **One-shot:**
 
-![PowerShell](https://img.shields.io/badge/-PowerShell-5391FE?logo=powershell&logoColor=white) ![macOS/Linux](https://img.shields.io/badge/-macOS%2FLinux-4EAA25?logo=gnubash&logoColor=white)
+![Windows](https://img.shields.io/badge/-PowerShell-5391FE?logo=powershell&logoColor=white) ![macOS/Linux](https://img.shields.io/badge/-macOS%2FLinux-4EAA25?logo=gnubash&logoColor=white)
 
 ```bash
 just scan '5f4dcc3b5aa765d61d8327deb882cf99'
 ```
 
-![cmd.exe](https://img.shields.io/badge/-cmd.exe-000000?logo=windowsterminal&logoColor=white)
+![cmd.exe](https://img.shields.io/badge/-cmd.exe-4D4D4D)
 
 ```cmd
 just scan "5f4dcc3b5aa765d61d8327deb882cf99"
