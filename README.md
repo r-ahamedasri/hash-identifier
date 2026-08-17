@@ -21,6 +21,15 @@ just setup
 
 Requires [`uv`](https://github.com/astral-sh/uv) and [`just`](https://github.com/casey/just). If you don't have them:
 
+![Windows](https://img.shields.io/badge/Windows-PowerShell-5391FE?logo=powershell&logoColor=white)
+
+```powershell
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+winget install --id Casey.Just -e
+```
+
+![macOS/Linux](https://img.shields.io/badge/macOS%2FLinux-bash-4EAA25?logo=gnubash&logoColor=white)
+
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to ~/.local/bin
@@ -30,32 +39,40 @@ curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -
 
 **One-shot:**
 
+![PowerShell](https://img.shields.io/badge/-PowerShell-5391FE?logo=powershell&logoColor=white) ![macOS/Linux](https://img.shields.io/badge/-macOS%2FLinux-4EAA25?logo=gnubash&logoColor=white)
+
 ```bash
 just scan '5f4dcc3b5aa765d61d8327deb882cf99'
 ```
 
+![cmd.exe](https://img.shields.io/badge/-cmd.exe-000000?logo=windowsterminal&logoColor=white)
+
+```cmd
+just scan "5f4dcc3b5aa765d61d8327deb882cf99"
 ```
-╭─ scan report ──────────────────────────────────────────────────╮
-│ sample  5f4dcc3b5aa765d61d8327deb882cf99                       │
-│                                                                │
-│  #   algorithm   confidence   reason                           │
-│  1   MD5         Medium       32 hex characters — the most     │
-│                                common algorithm at this length │
-│  2   NTLM        Low          32 hex characters also matches   │
-│                                NTLM's output size              │
-│  3   MD4         Low          32 hex characters also matches   │
-│                                MD4's output size               │
-╰────────────────────────────────────────────────────────────────╯
-```
+
+That prints a colored report ranking every plausible algorithm by confidence. For the MD5 example above, it ranks **MD5** highest (32 hex characters is most commonly MD5), with **NTLM** and **MD4** listed below it as lower-confidence alternatives, since both also produce 32-character hex output — each result comes with a one-line reason.
 
 **Interactive mode** — just run `just shell` and paste hashes one after another without re-invoking the CLI each time.
 
 **Scriptable output:**
 
+![PowerShell](https://img.shields.io/badge/-PowerShell-5391FE?logo=powershell&logoColor=white) ![macOS/Linux](https://img.shields.io/badge/-macOS%2FLinux-4EAA25?logo=gnubash&logoColor=white)
+
 ```bash
 uv run hashid '5f4dcc3b5aa765d61d8327deb882cf99' --json
 ```
 
+```json
+{
+  "sample": "5f4dcc3b5aa765d61d8327deb882cf99",
+  "findings": [
+    { "algorithm": "MD5", "confidence": "Medium", "reason": "32 hex characters — the most common algorithm at this length", "is_hash": true },
+    { "algorithm": "NTLM", "confidence": "Low", "reason": "32 hex characters also matches NTLM's output size", "is_hash": true },
+    { "algorithm": "MD4", "confidence": "Low", "reason": "32 hex characters also matches MD4's output size", "is_hash": true }
+  ]
+}
+```
 > [!IMPORTANT]
 > Wrap any hash starting with `$` in single quotes — otherwise your shell will try to expand `$2`, `$1`, `$argon2id` etc. as variables and mangle the input before it reaches the program.
 
