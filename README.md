@@ -44,12 +44,14 @@ curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -
 ```bash
 just scan '5f4dcc3b5aa765d61d8327deb882cf99'
 ```
+*In PowerShell or bash, wrap your hash in single quotes `'...'`.*
 
 ![cmd.exe](https://img.shields.io/badge/-cmd.exe-4D4D4D)
 
 ```cmd
 just scan "5f4dcc3b5aa765d61d8327deb882cf99"
 ```
+*In cmd.exe, wrap your hash in double quotes `"..."` instead — single quotes are not treated as quoting in cmd.*
 
 That prints a colored report ranking every plausible algorithm by confidence. For the MD5 example above, it ranks **MD5** highest (32 hex characters is most commonly MD5), with **NTLM** and **MD4** listed below it as lower-confidence alternatives, since both also produce 32-character hex output — each result comes with a one-line reason.
 
