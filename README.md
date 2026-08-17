@@ -35,17 +35,17 @@ just scan '5f4dcc3b5aa765d61d8327deb882cf99'
 ```
 
 ```
-╭─ scan report ────────────────────────────────────────────────╮
-│ sample  5f4dcc3b5aa765d61d8327deb882cf99                      │
-│                                                                 │
-│  #   algorithm   confidence   reason                          │
-│  1   MD5         Medium       32 hex characters — the most    │
+╭─ scan report ──────────────────────────────────────────────────╮
+│ sample  5f4dcc3b5aa765d61d8327deb882cf99                       │
+│                                                                │
+│  #   algorithm   confidence   reason                           │
+│  1   MD5         Medium       32 hex characters — the most     │
 │                                common algorithm at this length │
-│  2   NTLM        Low          32 hex characters also matches  │
+│  2   NTLM        Low          32 hex characters also matches   │
 │                                NTLM's output size              │
-│  3   MD4         Low          32 hex characters also matches  │
-│                                MD4's output size                │
-╰──────────────────────────────────────────────────────────────╯
+│  3   MD4         Low          32 hex characters also matches   │
+│                                MD4's output size               │
+╰────────────────────────────────────────────────────────────────╯
 ```
 
 **Interactive mode** — just run `just shell` and paste hashes one after another without re-invoking the CLI each time.
